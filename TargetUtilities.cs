@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿//DOCUMENTATION: https://github.com/OuterRimStudios/Utilities/wiki/Target-Utilities
+
 using System.Collections.Generic;
 using UnityEngine;
 

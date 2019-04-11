@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿//DOCUMENTATION: https://github.com/OuterRimStudios/Utilities/wiki/Collection-Utilities
+
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace OuterRimStudios.Utilities
@@ -44,6 +46,12 @@ namespace OuterRimStudios.Utilities
                 T t = GetRandomItem(origList);
                 tempList.Add(t);
                 origList.Remove(t);
+
+                if (origList.Count <= 0)
+                {
+                    foreach (T item in list)
+                        origList.Add(item);
+                }
             }
 
             return tempList;
@@ -67,6 +75,12 @@ namespace OuterRimStudios.Utilities
                 T t = GetRandomItem(origList);
                 tempList.Add(t);
                 origList.Remove(t);
+
+                if (origList.Count <= 0)
+                {
+                    foreach (T item in array)
+                        origList.Add(item);
+                }
             }
 
             return tempList.ToArray();
