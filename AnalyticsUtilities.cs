@@ -24,10 +24,12 @@ namespace OuterRimStudios.Utilities
                 createHeaders = true;
 
             //This section is writing the data to the csv file
-            using var writer = new StreamWriter(Application.dataPath + "\\Analytics\\" + eventName + "Analytics_" + date + ".csv", append: true);
-            using var csv = new CsvWriter(writer);
-            csv.Configuration.HasHeaderRecord = createHeaders;
-            csv.WriteRecords(data);
+            using (var writer = new StreamWriter(Application.dataPath + "\\Analytics\\" + eventName + "Analytics_" + date + ".csv", append: true))
+            using (var csv = new CsvWriter(writer))
+            {
+                csv.Configuration.HasHeaderRecord = createHeaders;
+                csv.WriteRecords(data);
+            }
         }
     }
 }
