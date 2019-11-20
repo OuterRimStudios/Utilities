@@ -98,5 +98,285 @@ namespace OuterRimStudios.Utilities
             return distance;
         }
         #endregion
+
+        #region IncrementLoop
+        /// <summary>
+        /// An extension method that increments a double until it equals the maxValue, where then it will reset to 0.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="count">This value that you want to increment.</param>
+        /// <param name="maxValue">The value you want the count value to reset at.</param>
+        /// <returns></returns>
+        public static double IncrementLoop<T>(this double count, T maxValue)
+        {
+            if (!double.TryParse(maxValue.ToString(), out double doubleValue))
+                Debug.LogError($"{maxValue} cannot be converted into a number!");
+
+            if (count < doubleValue)
+                count++;
+            else
+                count = 0;
+
+            return count;
+        }
+
+        /// <summary>
+        /// An extension method that increments a float until it equals the maxValue, where then it will reset to 0.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="count">This value that you want to increment.</param>
+        /// <param name="maxValue">The value you want the count value to reset at.</param>
+        /// <returns></returns>
+        public static float IncrementLoop<T>(this float count, T maxValue)
+        {
+            return (float)((double)count).IncrementLoop(maxValue);
+        }
+
+        /// <summary>
+        /// An extension method that increments a int until it equals the maxValue, where then it will reset to 0.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="count">This value that you want to increment.</param>
+        /// <param name="maxValue">The value you want the count value to reset at.</param>
+        /// <returns></returns>
+        public static int IncrementLoop<T>(this int count, T maxValue)
+        {
+            return (int)((double)count).IncrementLoop(maxValue);
+        }
+
+        /// <summary>
+        /// An extension method that increments a byte until it equals the maxValue, where then it will reset to 0.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="count">This value that you want to increment.</param>
+        /// <param name="maxValue">The value you want the count value to reset at.</param>
+        /// <returns></returns>
+        public static byte IncrementLoop<T>(this byte count, T maxValue)
+        {
+            return (byte)((double)count).IncrementLoop(maxValue);
+        }
+        #endregion
+
+        #region IncrementClamped
+        /// <summary>
+        /// An extension method that increments a double until it equals the maxValue, where then it won't go any higher.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="count">This value that you want to increment.</param>
+        /// <param name="maxValue">The value you want the count value to stop at.</param>
+        /// <returns></returns>
+        public static double IncrementClamped<T>(this double count, T maxValue)
+        {
+            if (!double.TryParse(maxValue.ToString(), out double doubleValue))
+                Debug.LogError($"{maxValue} cannot be converted into a number!");
+
+            if (count < doubleValue)
+                count++;
+
+            return count;
+        }
+
+        /// <summary>
+        /// An extension method that increments a float until it equals the maxValue, where then it won't go any higher.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="count">This value that you want to increment.</param>
+        /// <param name="maxValue">The value you want the count value to stop at.</param>
+        /// <returns></returns>
+        public static float IncrementClamped<T>(this float count, T maxValue)
+        {
+            return (float)((double)count).IncrementClamped(maxValue);
+        }
+
+        /// <summary>
+        /// An extension method that increments a int until it equals the maxValue, where then it won't go any higher.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="count">This value that you want to increment.</param>
+        /// <param name="maxValue">The value you want the count value to stop at.</param>
+        /// <returns></returns>
+        public static int IncrementClamped<T>(this int count, T maxValue)
+        {
+            return (int)((double)count).IncrementClamped(maxValue);
+        }
+
+        /// <summary>
+        /// An extension method that increments a byte until it equals the maxValue, where then it won't go any higher.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="count">This value that you want to increment.</param>
+        /// <param name="maxValue">The value you want the count value to stop at.</param>
+        /// <returns></returns>
+        public static byte IncrementClamped<T>(this byte count, T maxValue)
+        {
+            return (byte)((double)count).IncrementClamped(maxValue);
+        }
+        #endregion
+
+        #region DecrementLoop
+        /// <summary>
+        /// An extension method that decrements a double until it equals the minValue, where then it will then be set to maxValue.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="count">This value that you want to decrement.</param>
+        /// <param name="minValue">The value you want the count value to stop at.</param>
+        /// <param name="maxValue">The value you want the count value to reset to.</param>
+        /// <returns></returns>
+        public static double DecrementLoop<T>(this double count, T minValue, T maxValue)
+        {
+            if (!double.TryParse(maxValue.ToString(), out double doubleMaxValue))
+                Debug.LogError($"{maxValue} cannot be converted into a number!");
+
+            if (!double.TryParse(minValue.ToString(), out double doubleMinValue))
+                Debug.LogError($"{minValue} cannot be converted into a number!");
+
+            if (count > doubleMinValue)
+                count--;
+            else
+                count = doubleMaxValue;
+
+            return count;
+        }
+
+        /// <summary>
+        /// An extension method that decrements a float until it equals the minValue, where then it will then be set to maxValue.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="count">This value that you want to decrement.</param>
+        /// <param name="minValue">The value you want the count value to stop at.</param>
+        /// <param name="maxValue">The value you want the count value to reset to.</param>
+        /// <returns></returns>
+        public static float DecrementLoop<T>(this float count, T minValue, T maxValue)
+        {
+            return (float)((double)count).DecrementLoop(minValue, maxValue);
+        }
+
+        /// <summary>
+        /// An extension method that decrements a int until it equals the minValue, where then it will then be set to maxValue.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="count">This value that you want to decrement.</param>
+        /// <param name="minValue">The value you want the count value to stop at.</param>
+        /// <param name="maxValue">The value you want the count value to reset to.</param>
+        /// <returns></returns>
+        public static int DecrementLoop<T>(this int count, T minValue, T maxValue)
+        {
+            return (int)((double)count).DecrementLoop(minValue, maxValue);
+        }
+
+        /// <summary>
+        /// An extension method that decrements a byte until it equals the minValue, where then it will then be set to maxValue.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="count">This value that you want to decrement.</param>
+        /// <param name="minValue">The value you want the count value to stop at.</param>
+        /// <param name="maxValue">The value you want the count value to reset to.</param>
+        /// <returns></returns>
+        public static byte DecrementLoop<T>(this byte count, T minValue, T maxValue)
+        {
+            return (byte)((double)count).DecrementLoop(minValue, maxValue);
+        }
+        #endregion
+        
+        #region DecrementClamped
+        /// <summary>
+        /// An extension method that decrements a double until it equals 0, where then it stops.
+        /// </summary>
+        /// <param name="count">This value that you want to decrement.</param>
+        /// <returns></returns>
+        public static double DecrementClamped(this double count)
+        {
+            if (count > 0)
+                count--;
+
+            return count;
+        }
+
+        /// <summary>
+        /// An extension method that decrements a double until it equals the minValue, where then it stops.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="count">This value that you want to decrement.</param>
+        /// <param name="minValue">The value you want the count value to stop at.</param>
+        /// <returns></returns>
+        public static double DecrementClamped<T>(this double count, T minValue)
+        {
+            if (!double.TryParse(minValue.ToString(), out double doubleValue))
+                Debug.LogError($"{minValue} cannot be converted into a number!");
+
+            if (count > doubleValue)
+                count--;            
+
+            return count;
+        }
+
+        /// <summary>
+        /// An extension method that decrements an int until it equals 0, where then it stops.
+        /// </summary>
+        /// <param name="count">This value that you want to decrement.</param>
+        /// <returns></returns>
+        public static int DecrementClamped(this int count)
+        {
+            return (int)((double)count).DecrementClamped();
+        }
+
+        /// <summary>
+        /// An extension method that decrements an int until it equals the minValue, where then it stops.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="count">This value that you want to decrement.</param>
+        /// <param name="minValue">The value you want the count value to stop at.</param>
+        /// <returns></returns>
+        public static int DecrementClamped<T>(this int count, T minValue)
+        {
+            return (int)((double)count).DecrementClamped(minValue);
+        }
+
+        /// <summary>
+        /// An extension method that decrements a float until it equals 0, where then it stops.
+        /// </summary>
+        /// <param name="count">This value that you want to decrement.</param>
+        /// <returns></returns>
+        public static float DecrementClamped(this float count)
+        {
+            return (float)((double)count).DecrementClamped();
+        }
+
+        /// <summary>
+        /// An extension method that decrements a float until it equals the minValue, where then it stops.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="count">This value that you want to decrement.</param>
+        /// <param name="minValue">The value you want the count value to stop at.</param>
+        /// <returns></returns>
+        public static float DecrementClamped<T>(this float count, T minValue)
+        {
+            return (float)((double)count).DecrementClamped(minValue);
+        }
+
+        /// <summary>
+        /// An extension method that decrements a byte until it equals 0, where then it stops.
+        /// </summary>
+        /// <param name="count">This value that you want to decrement.</param>
+        /// <returns></returns>
+        public static byte DecrementClamped(this byte count)
+        {
+            return (byte)((double)count).DecrementClamped();
+        }
+
+        /// <summary>
+        /// An extension method that decrements a byte until it equals the minValue, where then it stops.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="count">This value that you want to decrement.</param>
+        /// <param name="minValue">The value you want the count value to stop at.</param>
+        /// <returns></returns>
+        public static byte DecrementClamped<T>(this byte count, T minValue)
+        {
+            return (byte)((double)count).DecrementClamped(minValue);
+        }
+        #endregion
+    
+
     }
 }
